@@ -1,10 +1,13 @@
 # GenGen_Rworkshop2023
 
-This is the material for the "**GenGen Workshop: R for Reproducible Research and Data Wrangling**"     
+This is the material for the "**R for Reproducible Research and Data Wrangling**"     
 by *Giulia Puntin* (me 😉).     
 
 
 Feel free to 📥download, 🐱‍💻play around with it, and 💬get in touch if you have any feedback or comments!
+
+And if you feel like saying thank you ...     
+<a href="https://www.buymeacoffee.com/spunting" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 42px !important;width: 152px !important;" ></a>       
 
 ----------------------------------
 
@@ -34,10 +37,10 @@ Feel free to 📥download, 🐱‍💻play around with it, and 💬get in touch 
 ## Info for attendees
 
 #### 📅 When? 
-Wednesday, 15 February 2023, 9am–12pm
+Tuesday, 23 May 2023, 2:00pm-4:30pm
 
 #### 🌏 Where? 
-46-230 (Andrew N. Liveris Building, Collaborative Room), UQ campus St. Lucia, QLD, Australia
+50-S201 - Hawken Engineering Building, Collaborative Room, UQ Campus St Lucia, QLD, Australia
 
 #### 💰 Cost? 
 FREE
@@ -51,9 +54,9 @@ Familiarise yourself with the following core concepts of R (no need to become an
 + Data types (classes): know that they exist and have a rough understanding of what they mean
 + R functions and R packages
 
-#### ✍🏽 Registration and additional info 
-More detailed information is available on the event **registration** page: https://www.eventbrite.com.au/e/535202784937/     
-Please register by **Tuesday 14 February 2023** so we can better manage the logistics!
+#### ✍🏽 Registration 
+Please register your interest here (Google form): https://forms.gle/8xBemTQdYdM4beFJ9
+Initially opening to the School of Biology first but will extend to others depending on interest (we are limited by room capacity)
 
 -------------------------------------
 <div align="center">
