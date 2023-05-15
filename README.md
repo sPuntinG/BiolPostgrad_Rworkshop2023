@@ -1,4 +1,4 @@
-# GenGen_Rworkshop2023
+# BiolPostgrad_Rworkshop2023
 
 This is the material for the "**R for Reproducible Research and Data Wrangling**"     
 by *Giulia Puntin* (me 😉).     
