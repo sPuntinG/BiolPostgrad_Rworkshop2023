@@ -7,7 +7,9 @@ by *Giulia Puntin* (me 😉).
 Feel free to 📥download, 🐱‍💻play around with it, and 💬get in touch if you have any feedback or comments!
 
 And if you feel like saying thank you ...     
-<a href="https://www.buymeacoffee.com/spunting" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 42px !important;width: 152px !important;" ></a>       
+<a href="https://www.buymeacoffee.com/spunting" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 42px !important;width: 152px !important;" ></a>   
+
+or endorse my skills on [LinkedIn](https://www.linkedin.com/in/giulia-puntin-spunting/)
 
 ----------------------------------
 
