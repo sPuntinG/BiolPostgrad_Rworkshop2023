@@ -48,9 +48,9 @@ view(raw) # can scroll, but not ideal to have to scroll 100s of lines ...
 
 names(raw) # get all var names (handy for copy pasting)
 # "studyName" is not intuitive for me (!= format) -> I want to rename this variable
-
-
-
+  
+  
+  
 # Rename variable -------------------------------
 raw <- raw %>% # don't forget to assign to (same) object! (common mistake)
   rename(Study_Name = studyName) %>% view()
@@ -68,7 +68,7 @@ raw$Study_Name %>% unique() # ok correct "PAL0708" "PAL0809" "PAL0910"
 ## Nr of species -----------------
 raw$Species %>% unique()
   # Something wrong here ... !
-  # Needs to be fixed (see next section)
+  # (needs to be fixed, see how in the next section)
 
 # Inspect wrong spp value
 raw %>% 
@@ -106,7 +106,7 @@ raw %>%
   # we can also directly check nr of spp per study
 raw %>% 
   group_by(Study_Name) %>% 
-  # summarise(nr_of_species = length(unique(Species))) %>% # note `unique()` 
+  # summarise(nr_of_species = length(unique(Species))) %>% 
   summarise(nr_of_species = n_distinct(Species)) %>%
   view()
   # now it's clear that one species is missing from last study 
@@ -114,7 +114,7 @@ raw %>%
 # Also: check if any study has < 3 spp 
 raw %>% 
   group_by(Study_Name) %>% 
-  summarise(nr_of_species = n_distinct(Species)) %>% # note `unique()`
+  summarise(nr_of_species = n_distinct(Species)) %>% 
   filter(nr_of_species < 3) %>%  # add this filter
   view()
 
@@ -133,6 +133,7 @@ PAL0910 <- read_csv("./in/PAL0910.csv")
 nrow(PAL0910) # 120 rows (also see from 'Environment')
 ncol(PAL0910) # 13 cols 
 
+# Just for comparison, check how many raws in our old data set
 raw %>% 
   filter(Study_Name == "PAL0910") %>% 
   nrow() # 16 rows 
@@ -143,7 +144,7 @@ raw %>%
 ### if same nr of cols ------------
 ncol(PAL0910) == ncol(raw) # TRUE
 
-### if variable have the same names ------------
+### if variables have the same names ------------
 
 names(PAL0910) == names(raw) # looks like name of 1st var of PAL0910 doesn't match w/ same in raw
 
@@ -158,7 +159,7 @@ raw2 <- full_join(raw, PAL0910, by = c("Study_Name" = "studyName", # since diffe
                                        "Sample_Number", "Species", "Island", "Individual_ID", "Date_Egg", "Culmen_Length_mm",
                                          "Culmen_Depth_mm", "Flipper_Length_mm", "Body_Mass_g", "Sex", "Delta_15_N", "Delta_13_C")) 
 # Note that full_join() automatically identifies cols with same name (if none it will tell you and you can specify it manually)
-# Note that "raw2" has 104 more rows than "raw" (344 - 240)
+# Note that "raw2" has 104 more rows than "raw" (344 - 240; see Environment pane)
 
 
 
@@ -217,7 +218,7 @@ raw2 %>%
 raw2 %>% 
   mutate(Individual_ID_letters = str_extract_all(Individual_ID, "[:alpha:]")) %>% 
   pull(Individual_ID_letters) %>% unique()  # creates a list of 2 vectors
-  # Looks like one values has an extra A ...
+  # Looks like one value has an extra A ...
 
 # Inspect: filter() & str_detect()
 raw2 %>% 
@@ -269,7 +270,7 @@ raw3 <- raw3 %>%
 
 # Can filter using boolean operators (multiple conditions)
 raw3 %>% 
-  filter(N_nr == 1 & A_nr == 1 | A_nr == 2) %>% 
+  filter(N_nr == 1 & (A_nr == 1 | A_nr == 2)) %>% 
   view()
 
 # But in some cases I want to filter based on values of just one variable 
@@ -280,7 +281,7 @@ raw3 %>%
 
 # Long version 
 raw3 %>% 
-  filter(N_nr == 1 | N_nr == 21 |  N_nr == 21 | N_nr == 37 | N_nr == 47 | N_nr == 96 | N_nr == 99 )
+  filter(N_nr == 1 | N_nr == 21 | N_nr == 37 | N_nr == 47 | N_nr == 96 | N_nr == 99 )
 
 # Short version with %in%
 N_to_keep <- c(1, 21, 37, 47, 96, 99)
@@ -326,11 +327,11 @@ raw3 <- raw3 %>%
 # see:
 raw3 %>% 
   group_by(Individual_ID) %>% 
-  summarise(spp = unique(Species))
+  summarise(spp = unique(Species)) # e.g., see "N11A1", "N11A2" ...
 
 raw3 %>% 
   group_by(Individual_ID) %>% 
-  summarise(spp = n_distinct(Species))
+  summarise(spp = n_distinct(Species)) # when spp > 1 it means that same id was given to >1 spp!
 
 # => Let's make it unique by appending the first 3 letters of "Vernacular" to "Individual_ID"
 raw3 <- raw3 %>% 
@@ -349,7 +350,7 @@ raw3 %>%
   tidyr::separate(Scientific, 
                   into = c("Scientific_Genus", "Scientific_species"), # names of new vars
                   sep = " ", # define separator
-                  remove = F) %>% # to keep var "Species"
+                  remove = F) %>% # set to F to keep original var "Species"
   view()
   
 
@@ -359,7 +360,7 @@ raw3 %>%
 
 # This is an excel sheet that contains comments about individual penguins
 #  about sample collection or behavior, where info was recorded by "ticking"
-#  the appropriate box (mark with an x when comment applies to penguin)
+#  the appropriate box (marked with an x when comment applies to penguin)
 
 # Open in excel to see ...
 # ... then import in R
@@ -388,7 +389,7 @@ comments_long <- comments %>%
   ) 
 
 # Now see that we have more rows than we need: 
-#    NA's can be removed (just say that the comment doesn't apply to the respective row)
+#    NA's can be removed (as they just say that the comment doesn't apply to the respective row)
 comments_long <- comments_long %>% 
   filter(!is.na(Comments_value)) %>% #view() # Note: filter with negation ("!") to leave out rows with NA
   select(-Comments_value) #%>% view() # No need this col anymore
@@ -418,7 +419,7 @@ write_csv(raw4, "./out/raw4.csv")
 raw4 %>% 
   group_by(Species, Sex, Island) %>% 
   summarise(across(where(is.numeric), ~ mean(.x, na.rm = TRUE))) %>% 
-  select(-Sample_Number) %>%   # exclude because doesn't meke sense to calc. mean of this
+  select(-Sample_Number) %>%   # exclude because doesn't make sense to calc. mean of this
   arrange(desc(Species)) %>% # use to arrange display (in this case Male/Female) 
   view() %>% 
   write_csv(., "./out/raw4_means.csv")
@@ -435,7 +436,7 @@ raw4 %>%
 #  Basic plots are easier in base R ...  
 
 # Base R
-plot(raw4$Culmen_Length_mm, raw4$Culmen_Depth_mm) # I don't know why I get this error ...
+plot(raw4$Culmen_Length_mm, raw4$Culmen_Depth_mm) 
 
 # GGplot 
 ggplot(data = raw4, aes(x = Culmen_Length_mm,
@@ -499,7 +500,7 @@ ggplot(data = raw4, aes(x = Culmen_Length_mm,
 
 # Faceting (small multiples) with overall 
 #  (cool example of power of working with layers!)
-# Note that we need a 2nd data (without factor)
+# Note that we need a 2nd data set (without factor)
 raw4_nofactor <- raw4 %>% 
   select(Culmen_Length_mm, Culmen_Depth_mm)
 
@@ -580,12 +581,5 @@ ggplot(data = raw4, aes(x = Sex,
 
 
 
-
-
-
-
-
-
-
-
-
+# Thanks for following through until the end!
+# Now it's your time to explore the power of R and Tidyverse and get the most out of your data!
